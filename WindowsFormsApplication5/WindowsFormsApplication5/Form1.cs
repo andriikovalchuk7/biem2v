@@ -118,7 +118,7 @@ namespace WindowsFormsApplication5
             cities_listbox.Enabled = false;
 
             population.Value = 0;
-            major_textbox.Text = "";
+            major_textbox.Text = "n/a";
             area.Value = 0;
         }
         private void save_Click(object sender, EventArgs e)
