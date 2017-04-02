@@ -131,11 +131,11 @@ namespace WindowsFormsApplication5
 
         private void population_ValueChanged(object sender, EventArgs e)
         {
-            save.Enabled = true;
+            //save.Enabled = true;
         }
         private void area_ValueChanged(object sender, EventArgs e)
         {
-            save.Enabled = true;
+           // save.Enabled = true;
         }
     }
 }
