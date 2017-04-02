@@ -116,7 +116,6 @@ namespace WindowsFormsApplication5
             Delete.Enabled = false;
             major_textbox.Enabled = true;
             cities_listbox.Enabled = false;
-
             population.Value = 0;
             major_textbox.Text = "";
             area.Value = 0;
@@ -132,11 +131,11 @@ namespace WindowsFormsApplication5
 
         private void population_ValueChanged(object sender, EventArgs e)
         {
-            //save.Enabled = true;
+            save.Enabled = true;
         }
         private void area_ValueChanged(object sender, EventArgs e)
         {
-           // save.Enabled = true;
+            save.Enabled = true;
         }
     }
 }
