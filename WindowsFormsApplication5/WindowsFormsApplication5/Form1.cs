@@ -40,6 +40,7 @@ namespace WindowsFormsApplication5
         }
         private void Delete_Click(object sender, EventArgs e)
         {
+
             int[] pos = new int[cities_listbox.SelectedIndices.Count];
             int it = 0;
             ListBox.SelectedIndexCollection l = new ListBox.SelectedIndexCollection(cities_listbox);
@@ -55,6 +56,11 @@ namespace WindowsFormsApplication5
             area.Value = 0;
             major_textbox.Text = "";
             country_combobox_SelectedIndexChanged(this, e);
+            if (countries[selected_country].cities.Count == 0)
+            {
+                save.Enabled = false;
+                Delete.Enabled = false;
+            }
         }
         private void country_combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -77,7 +83,11 @@ namespace WindowsFormsApplication5
         }
         private void cities_listbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cities_listbox.SelectedIndex < 0) cities_listbox.SelectedIndex = 0;
+            if (cities_listbox.SelectedIndex < 0)
+            {
+                save.Enabled = false;
+                cities_listbox.SelectedIndex = 0;
+            }
             selected();
             population.Value = countries[selected_country].cities[selected_city].population;
             area.Value = countries[selected_country].cities[selected_city].area;
@@ -122,20 +132,28 @@ namespace WindowsFormsApplication5
         }
         private void save_Click(object sender, EventArgs e)
         {
-            selected();
-            countries[selected_country].cities[selected_city].population=Convert.ToInt32(population.Value);
-            countries[selected_country].cities[selected_city].area= Convert.ToInt32(area.Value);
-            countries[selected_country].cities[selected_city].major = major_textbox.Text;
-            cities_listbox_SelectedIndexChanged(this, e);
-        }
+            if (countries[selected_country].cities.Count == 0)
+            {
+                save.Enabled = false;
+                return;
+            }
+            else
+            {
+                selected();
+                countries[selected_country].cities[selected_city].population = Convert.ToInt32(population.Value);
+                countries[selected_country].cities[selected_city].area = Convert.ToInt32(area.Value);
+                countries[selected_country].cities[selected_city].major = major_textbox.Text;
+                cities_listbox_SelectedIndexChanged(this, e);
+            }
 
+        }
         private void population_ValueChanged(object sender, EventArgs e)
         {
-            //save.Enabled = true;
+            save.Enabled = true;
         }
         private void area_ValueChanged(object sender, EventArgs e)
         {
-           // save.Enabled = true;
+            save.Enabled = true;
         }
     }
 }
